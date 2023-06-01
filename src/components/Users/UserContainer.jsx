@@ -17,13 +17,16 @@ const UserContainer = ({ users, filter }) => {
     } else {
       setFilteredUsers(users);
     }
+    console.log();
   }, [filter, users]);
 
   return (
     <section>
-      {filteredUsers.map((user) => (
-        <UserCard user={user} key={user.id} />
-      ))}
+      {filteredUsers.length > 0 ? (
+        filteredUsers.map((user) => <UserCard user={user} key={user.id} />)
+      ) : (
+        <p>No existe un usuario para la busqueda realizada.</p>
+      )}
     </section>
   );
 };

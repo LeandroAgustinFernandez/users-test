@@ -8,7 +8,9 @@ const Home = () => {
   const [search, setSearch] = useState();
 
   useEffect(() => {
-    getUsersFromApi().then((data) => setUsers(data));
+    getUsersFromApi()
+      .then((data) => setUsers(data))
+      
   }, []);
 
   const handleChange = (e) => {
@@ -18,7 +20,11 @@ const Home = () => {
   return (
     <main>
       <Search inputChange={handleChange} />
-      <UserContainer users={users} filter={search} />
+      {users.length > 0 ? (
+        <UserContainer users={users} filter={search} />
+      ) : (
+        <p>Hubo un error al cargar la información</p>
+      )}
     </main>
   );
 };
