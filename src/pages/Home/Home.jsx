@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import getUsersFromApi from "../../assets/users";
+import { getUsersFromApi } from "../../assets/users";
 import UserContainer from "../../components/Users/Container/UserContainer";
 import Search from "../../components/Search/Search";
-import './Home.css'
+import "./Home.css";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +19,15 @@ const Home = () => {
   return (
     <main className="container">
       <Search inputChange={handleChange} />
-      <UserContainer users={users} filter={search} />
+      {users.length > 0 ? (
+        <UserContainer users={users} filter={search} />
+      ) : (
+        <div className="information">
+          <p className="information_text">
+            Hubo un error al cargar la información.
+          </p>
+        </div>
+      )}
     </main>
   );
 };
