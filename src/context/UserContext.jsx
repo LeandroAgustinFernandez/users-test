@@ -5,6 +5,7 @@ const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getUsersFromApi().then((data) => setUsers(data));
@@ -23,7 +24,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{users, handleSearch}}>
+    <UserContext.Provider value={{ users, handleSearch }}>
       {children}
     </UserContext.Provider>
   );

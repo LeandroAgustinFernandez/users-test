@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import UserCard from "../Card/UserCard";
+import Message from "../../Messages/Message";
 import "./UserContainer.css";
 import UserContext from "../../../context/UserContext";
 
@@ -17,11 +18,7 @@ const UserContainer = ({ filter }) => {
       {filteredUsers?.length > 0 ? (
         filteredUsers.map((user) => <UserCard user={user} key={user.id} />)
       ) : (
-        <div className="information">
-          <p className="information_text">
-            No existe un usuario para la busqueda realizada.
-          </p>
-        </div>
+        <Message msg="No existe un usuario para la busqueda realizada."/>
       )}
     </section>
   );
