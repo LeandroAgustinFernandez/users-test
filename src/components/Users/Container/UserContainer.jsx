@@ -1,28 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserCard from "../Card/UserCard";
 import "./UserContainer.css";
+import UserContext from "../../../context/UserContext";
 
-const UserContainer = ({ users, filter }) => {
+const UserContainer = ({ filter }) => {
+  const { handleSearch } = useContext(UserContext);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
-    if (filter) {
-      setFilteredUsers(
-        users.filter(
-          ({ name, email, address }) =>
-            name.toLocaleLowerCase().includes(filter) ||
-            email.toLocaleLowerCase().includes(filter) ||
-            address.city.toLocaleLowerCase().includes(filter)
-        )
-      );
-    } else {
-      setFilteredUsers(users);
-    }
-  }, [filter, users]);
+    let users = handleSearch(filter);
+    setFilteredUsers(users);
+  }, [handleSearch, filter]);
 
   return (
     <section className="user_container">
-      {filteredUsers.length > 0 ? (
+      {filteredUsers?.length > 0 ? (
         filteredUsers.map((user) => <UserCard user={user} key={user.id} />)
       ) : (
         <div className="information">

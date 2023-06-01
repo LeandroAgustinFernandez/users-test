@@ -1,5 +1,6 @@
-import './App.css';
-import Home from './pages/Home/Home';
+import "./App.css";
+import { UserContextProvider } from "./context/UserContext";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
@@ -7,7 +8,9 @@ function App() {
       <header className="App-header">
         <h1>User Info</h1>
       </header>
-      <Home />
+      <UserContextProvider>
+        <Home />
+      </UserContextProvider>
     </div>
   );
 }
