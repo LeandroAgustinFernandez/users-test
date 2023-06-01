@@ -2,7 +2,6 @@
     background-color: white;
     padding: 5px 10px;
     color: #333;
-   
     width: 100%;
     box-shadow: 1px 1px 3px #444;
     border-radius: 3px;
@@ -20,5 +19,17 @@
 }
 
 .user_card-personalinfo {
-    font-size: 15px;
+    margin-top: 2.5em;
+    font-size: 14px;
+}
+
+.user_card-personalinfo p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: .5em 0;
+}
+
+.user_card-personalinfo p i {
+    width: 20px;
 }

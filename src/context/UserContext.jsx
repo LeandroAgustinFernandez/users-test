@@ -6,9 +6,18 @@ const UserContext = createContext();
 export const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    getUsersFromApi().then((data) => setUsers(data));
+    setError(false);
+    setIsLoading(true);
+    getUsersFromApi()
+      .then((data) => {
+        data?.error ? setError(data.error) : setUsers(data);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   const handleSearch = (filter) => {
@@ -24,7 +33,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ users, handleSearch }}>
+    <UserContext.Provider value={{ users, handleSearch, isLoading, error }}>
       {children}
     </UserContext.Provider>
   );

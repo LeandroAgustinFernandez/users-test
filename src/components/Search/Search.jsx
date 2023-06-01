@@ -4,7 +4,7 @@ const Search = ({ inputChange }) => {
   return (
     <section className="search-container">
       <article>
-        <input className='searchInput' type="text" onKeyUp={inputChange} placeholder='Ingrese su busqueda...'/>
+        <input className='searchInput' type="text" onKeyUp={inputChange} placeholder='Search by Name, Email and City...'/>
       </article>
     </section>
   );

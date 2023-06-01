@@ -3,9 +3,10 @@ import UserCard from "../Card/UserCard";
 import Message from "../../Messages/Message";
 import "./UserContainer.css";
 import UserContext from "../../../context/UserContext";
+import Loading from "../../Loading/Loading";
 
 const UserContainer = ({ filter }) => {
-  const { handleSearch } = useContext(UserContext);
+  const { handleSearch, isLoading, error } = useContext(UserContext);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
@@ -14,11 +15,19 @@ const UserContainer = ({ filter }) => {
   }, [handleSearch, filter]);
 
   return (
-    <section className="user_container">
-      {filteredUsers?.length > 0 ? (
-        filteredUsers.map((user) => <UserCard user={user} key={user.id} />)
+    <section>
+      {isLoading ? (
+        <Loading />
       ) : (
-        <Message msg="No existe un usuario para la busqueda realizada."/>
+        <article className="user_container">
+          {error ? (
+            <Message msg={error} />
+          ) : filteredUsers?.length > 0 ? (
+            filteredUsers?.map((user) => <UserCard user={user} key={user.id} />)
+          ) : (
+            <Message msg="No existe un usuario para la busqueda realizada." />
+          )}
+        </article>
       )}
     </section>
   );
