@@ -1,10 +1,10 @@
-import React from "react";
+import './Search.css'
 
 const Search = ({ inputChange }) => {
   return (
-    <section>
+    <section className="search-container">
       <article>
-        <input type="text" onKeyUp={inputChange} />
+        <input className='searchInput' type="text" onKeyUp={inputChange} placeholder='Ingrese su busqueda...'/>
       </article>
     </section>
   );

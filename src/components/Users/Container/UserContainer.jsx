@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import UserCard from "./UserCard";
+import UserCard from "../Card/UserCard";
+import './UserContainer.css'
 
 const UserContainer = ({ users, filter }) => {
   const [filteredUsers, setFilteredUsers] = useState(users);
@@ -21,11 +22,13 @@ const UserContainer = ({ users, filter }) => {
   }, [filter, users]);
 
   return (
-    <section>
+    <section className="user_container">
       {filteredUsers.length > 0 ? (
         filteredUsers.map((user) => <UserCard user={user} key={user.id} />)
       ) : (
-        <p>No existe un usuario para la busqueda realizada.</p>
+        <div className="information">
+          <p className="information_text">No existe un usuario para la busqueda realizada.</p>
+        </div>
       )}
     </section>
   );
