@@ -3,12 +3,12 @@ import React from "react";
 const UserCard = ({ user }) => {
   return (
     <article>
-      {user.name}
-      {user.username}
-      {user.email}
-      {user.address.city}
-      {user.phone}
-      {user.company.name}
+      <p>{user.name}</p>
+      <p>{user.username}</p>
+      <p>{user.email}</p>
+      <p>{user.address.city}</p>
+      <p>{user.phone}</p>
+      <p>{user.company.name}</p>
     </article>
   );
 };
